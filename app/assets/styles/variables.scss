@@ -1,0 +1,21 @@
+
+//
+// colors
+//
+
+$text-color: #777;
+
+//
+// Sizes
+//
+
+$nav-height: 70px;
+
+//
+// Mixins
+//
+
+@function img($file){
+  $url: "../images/#{$file}";
+  @return url($url)
+}

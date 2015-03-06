@@ -1,0 +1,25 @@
+<div id="home-content">
+  <div id="note-list">
+  <header>Notes</header>
+
+    <!-- Notes List -->
+
+    <div class="note" ng-repeat"note in notes">
+      <header>
+        <span class="name">{{note.name}}</span>
+        <span class="created">{{note.created}}</span>
+      </header>
+      <div class="content">
+        <p>
+          {{note.content}}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty List -->
+
+  <div class="empty-message" ng-show="!notes.length">
+    No notes found
+  </div>
+</div>

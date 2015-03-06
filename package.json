@@ -1,0 +1,37 @@
+{
+  "name": "MEAN-example",
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha --timeout 5000"
+  },
+  "dependencies": {
+    "async": "^0.9.0",
+    "body-parser": "~1.9.3",
+    "colors": "~1.0.3",
+    "config.json": "0.0.3",
+    "express": "~4.10.4",
+    "express-json": "~1.0.0",
+    "grunt": "^0.4.1",
+    "grunt-autoprefixer": "^0.7.3",
+    "grunt-concat-in-order": "^0.1.6",
+    "grunt-concurrent": "^0.5.0",
+    "grunt-contrib-clean": "^0.5.0",
+    "grunt-contrib-compass": "^0.7.2",
+    "grunt-contrib-concat": "^0.4.0",
+    "grunt-contrib-copy": "^0.5.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-express-server": "^0.4.19",
+    "grunt-newer": "^0.7.0",
+    "grunt-ngmin": "^0.0.3",
+    "grunt-wiredep": "~1.8.0",
+    "joi": "~4.9.0",
+    "load-grunt-tasks": "^0.4.0",
+    "lodash": "~2.4.1",
+    "mocha": "~2.0.1",
+    "mongoman": "^1.0.0",
+    "should": "~3.3.1"
+  }
+}
