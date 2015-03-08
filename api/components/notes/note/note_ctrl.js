@@ -66,7 +66,7 @@ module.exports = {
   // Returns:
   // {
   //   _id     : Number,
-  //   title    : String,
+  //   title   : String,
   //   content : String,
   //   created : Date
   // }
@@ -89,7 +89,7 @@ module.exports = {
   // Returns:
   // {
   //   _id     : Number,
-  //   title    : String,
+  //   title   : String,
   //   content : String,
   //   created : Date
   // }

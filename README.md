@@ -2,6 +2,7 @@ MEAN Example
 ============
 
 TODO
+- implement update
 - fix edit resource request
 - fix header styling (colors)
 - show new note message if all notes are deleted

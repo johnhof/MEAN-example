@@ -11,8 +11,6 @@ module.exports = {
   // Query Params:
   // {
   //   search : String, // OPTIONAL - return notes that contain this sting in the body of title
-  //   start  : Number, // OPTIONAL - offset this many values and return the result. defaults to 0
-  //   count  : Number // OPTIONAL - number of items returned. default 10
   // }
   //
   // Returns:
