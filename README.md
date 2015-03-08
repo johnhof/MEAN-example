@@ -9,3 +9,4 @@ TODO
 - add placeholder files to track folders
 - implement API tests
 - clean up dev dependencies
+- add a buttload of documentation

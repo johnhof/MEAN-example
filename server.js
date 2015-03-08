@@ -45,7 +45,9 @@ mon.connect(/* pass in the ID for your database on the live server */);
 //
 //////////////////////////////////////////////////////////////////////////////////
 
-module.exports = startServer
+// Return the server function to allow superTEst to work
+module.exports = startServer;
+
 function startServer () {
 
   // define the server and an express server
