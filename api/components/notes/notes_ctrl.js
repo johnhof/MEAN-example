@@ -25,7 +25,8 @@ module.exports = {
 
     // search is the query param was provided
     if (req.query.search) {
-      var regEx = new RegExp('^' + req.query.search,'i');
+      // match words only
+      var regEx = new RegExp('(^|\\s+)' + req.query.search,'i');
 
       Note.find({
         $or : [ // match against both the title and the body

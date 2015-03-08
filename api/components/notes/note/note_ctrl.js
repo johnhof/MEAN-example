@@ -9,7 +9,13 @@ module.exports = {
 
   // Create
   //
-  // Returns:
+  // Accepts Body:
+  // {
+  //   title : String // REQUIRED
+  //   content : String // REQUIRED
+  // }
+  //
+  // Returns: //created note
   // {
   //   _id     : Number,
   //   title    : String,
@@ -37,10 +43,10 @@ module.exports = {
 
   // Read
   //
-  // Returns:
+  // Returns: // note
   // {
   //   _id     : Number,
-  //   title    : String,
+  //   title   : String,
   //   content : String,
   //   created : Date
   // }
@@ -63,7 +69,13 @@ module.exports = {
 
   // Update
   //
-  // Returns:
+  // Accepts Body:
+  // {
+  //   title : String // OPTIONAL
+  //   content : String // OPTIONAL
+  // }
+  //
+  // Returns: // updated note
   // {
   //   _id     : Number,
   //   title   : String,
@@ -74,11 +86,22 @@ module.exports = {
   update : function (req, res, next) {
     Note.findOne({
       _id : req.params.id
-    }, function sendNote (error, note) {
+    }, function updateNote (error, note) {
       if (error) {
         return next(error);
+
       } else {
-        return res.send(note);
+        note.title   = req.body.title || note.title;
+        note.content = req.body.content || note.content
+        note.save(function (err, _note) {
+          console.log(_note)
+          if (error) {
+            return next(error);
+
+          } else {
+            return res.send(_note);
+          }
+        })
       }
     });
   },
@@ -86,12 +109,9 @@ module.exports = {
 
   // Destroy
   //
-  // Returns:
+  // Returns: // success or failure
   // {
-  //   _id     : Number,
-  //   title   : String,
-  //   content : String,
-  //   created : Date
+  //   success : Boolean
   // }
   //
   destroy : function (req, res, next) {

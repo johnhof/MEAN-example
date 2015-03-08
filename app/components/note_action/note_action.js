@@ -5,7 +5,6 @@ mean.controller('NoteActionCtrl', ['$scope', 'Api', '$routeParams', '$location',
   $scope.inputs = {};
   $scope.errors = {};
 
-
   if (isEdit) {
     $scope.loading = true;
 
@@ -36,7 +35,6 @@ mean.controller('NoteActionCtrl', ['$scope', 'Api', '$routeParams', '$location',
 
     // if there is an id, assume its an edit
     if (isEdit) {
-      console.log($scope.inputs)
       Api.note.update($scope.inputs, responseSuccess, responseError);
 
     // otherwise it must be a create

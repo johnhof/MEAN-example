@@ -21,8 +21,13 @@ mean.service('Api', ['$http',  '$resource', function ($http, $resource) {
   api.note = $resource('/notes/:id', null,  {
     create  : { method : 'POST' },
     read    : { method : 'GET' },
-    update  : { method : 'PUT' },
-    destroy : { method : 'DELETE'}
+    destroy : { method : 'DELETE'},
+    update  : {
+      method : 'PUT',
+      params : {
+        id : '@id'
+      }
+    }
   });
 
 
