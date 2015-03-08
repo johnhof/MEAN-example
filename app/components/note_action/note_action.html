@@ -1,0 +1,24 @@
+<div id="note-action-content">
+  <!-- 404 -->
+  <div ng-show="notFound" ng-include="'../views/404.html'"></div>
+
+  <!-- form -->
+  <div ng-if="!loading && !notFound">
+    <header>{{action}} Note</header>
+    <form id="action-form" name="actionForm">
+
+      <input type="text" ng-model="inputs.title" placeholder="Title">
+      <div class="error in-place">{{errors.title}}</div>
+
+      <textarea type="text" ng-model="inputs.content" placeholder="Content"></textarea>
+      <div class="error in-place">{{errors.content}}</div>
+
+      <div class="action-wrap">
+        <button class="button" ng-click="submit()" >Submit</button>
+        <button class="button" ng-if="delete" ng-click="delete()" >Delete</button>
+      </div>
+      <div class="error">{{errors.global}}</div>
+    </form>
+  </div>
+
+</div>

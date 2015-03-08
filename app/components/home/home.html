@@ -1,25 +1,18 @@
 <div id="home-content">
-  <div id="note-list">
-  <header>Notes</header>
-
-    <!-- Notes List -->
-
-    <div class="note" ng-repeat"note in notes">
-      <header>
-        <span class="name">{{note.name}}</span>
-        <span class="created">{{note.created}}</span>
-      </header>
-      <div class="content">
-        <p>
-          {{note.content}}
-        </p>
-      </div>
-    </div>
+  <div class="action-wrap" id="primary-actions">
+    <input type="text" placeholder="Search Notes" ng-model="search" ng-change="requestNotes(search)">
+    <a class="button" href="#/new">+ Note</a>
   </div>
 
-  <!-- Empty List -->
+  <!-- Notes List -->
 
-  <div class="empty-message" ng-show="!notes.length">
-    No notes found
+  <div id="note-list">
+    <note ng-repeat="note in notes"></note>
+
+    <!-- Empty List -->
+
+    <div class="empty-message" ng-show="!notes.length">
+      No notes found. <a href="#/new">Write a new one!</a>
+    </div>
   </div>
 </div>

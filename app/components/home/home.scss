@@ -1,5 +1,37 @@
 @import 'variables';
 
 #home-content {
+  padding: $spacing;
+  padding-top: $spacing * 2;
 
+  .action-wrap {
+
+    input {
+      flex: 3;
+      margin-right: $spacing;
+    }
+  }
+
+  #primary-actions {
+    max-width: 758px;
+  }
+
+  #note-list {
+    padding-top: $spacing * 2;
+
+
+    .note {
+      margin-bottom: ($spacing * 2) 0 ;
+      padding: $spacing 0 ($spacing * 3);
+      border-bottom: $border;
+
+      &:first-of-type {
+        border-top: $border;
+      }
+    }
+  }
+
+  .empty-message {
+    text-align: center;
+  }
 }

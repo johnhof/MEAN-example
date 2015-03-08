@@ -14,15 +14,15 @@ mean.config(['$routeProvider', function ($routeProvider) {
     }).
 
     //  New Note - note submission
-    when('/note/new', {
-      templateUrl : 'views/session.html',
-      controller  : 'SessionCtrl'
+    when('/new', {
+      templateUrl : 'views/note_action.html',
+      controller  : 'NoteActionCtrl'
     }).
 
-    // Note - display a single note
-    when('/note/:id', {
-      templateUrl : 'views/teams.html',
-      controller  : 'TeamsCtrl'
+    //  Edit Note - note submission
+    when('/edit/:id', {
+      templateUrl : 'views/note_action.html',
+      controller  : 'NoteActionCtrl'
     }).
 
     // 404

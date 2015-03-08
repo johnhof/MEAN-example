@@ -1,0 +1,15 @@
+<div class="note" data-id="{{note._id}}">
+  <header>
+    <span class="name">{{note.title}}</span>
+    <span class="created">{{note.created | date:' H:mm - M/d'}}</span>
+  </header>
+  <div class="content">
+    <p>
+      {{note.content}}
+    </p>
+  </div>
+  <div class="action-wrap">
+    <a href="#/edit/{{note._id}}" class="button">Edit</a>
+    <a class="button" ng-click="delete()">Delete</a>
+  </div>
+</div>

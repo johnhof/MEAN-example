@@ -2,5 +2,16 @@
 
 .navbar {
   z-index: 1000;
+  padding-top: 10px;
   height: $nav-height;
+  background-color: $text-color-light;
+  color: $primary;
+
+  .navbar-brand {
+    margin-right: $spacing * 10;
+  }
+
+  #navbar {
+    background-color: $text-color-light;
+  }
 }

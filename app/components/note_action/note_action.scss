@@ -1,0 +1,41 @@
+@import 'variables';
+
+#note-action-content {
+  padding: $spacing;
+  padding-top: $spacing * 2;
+  width: 100%;
+  margin: auto;
+
+
+  @media (min-width: 768px) { width: 80%; }
+  @media (min-width: 1000px) { width: 70%; }
+
+  header {
+    font-size: $extra-large-font;
+    margin-bottom: $spacing * 2;
+  }
+
+  #action-form {
+    > * {
+      margin-bottom: $spacing * 3;
+    }
+
+    .error {
+      margin: 0;
+      padding-left: $spacing;
+    }
+
+    .button {
+      margin-bottom: $spacing;
+      width: 50%;
+    }
+
+    .action-wrap {
+      max-width: 320px;
+
+      > *:nth-of-type(even) {
+        background-color: $text-color-light;
+      }
+    }
+  }
+}

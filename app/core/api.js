@@ -14,10 +14,17 @@ mean.service('Api', ['$http',  '$resource', function ($http, $resource) {
   // Notes
   api.notes = $resource('/notes', null,  {
     create  : { method : 'POST' },
-    status  : { method : 'HEAD' },
     read    : { method : 'GET' },
+  });
+
+  // Note
+  api.note = $resource('/notes/:id', null,  {
+    create  : { method : 'POST' },
+    read    : { method : 'GET' },
+    update  : { method : 'PUT' },
     destroy : { method : 'DELETE'}
   });
+
 
   return api;
 }])

@@ -1,0 +1,32 @@
+@import 'variables';
+
+.note {
+  header {
+    display: flex;
+    align-items: baseline;
+
+    .name {
+      flex: 2;
+      font-size: $large-font;
+      color: $accent;
+    }
+
+    .created {
+      flex: 1;
+      text-align: right;
+      color: $text-color-light;
+    }
+  }
+
+  .content {
+    margin: ($spacing * 2) 0;
+  }
+
+  .action-wrap {
+    max-width: 320px;
+
+    *:last-of-type {
+      background-color: $text-color-light;
+    }
+  }
+}

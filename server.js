@@ -45,6 +45,7 @@ mon.connect(/* pass in the ID for your database on the live server */);
 //
 //////////////////////////////////////////////////////////////////////////////////
 
+module.exports = startServer
 function startServer () {
 
   // define the server and an express server
@@ -95,4 +96,6 @@ function startServer () {
 
   server.listen(server.config.port);
   console.log('\n  Listening on port '.green + (server.config.port + '').blue + '\n');
+
+  return server;
 }

@@ -3,32 +3,115 @@
 html, body {
   padding: 0;
   margin: 0;
-  background :none;
   font-family: "Open Sans", sans-serif;
-  font-weight: 300;
+  font-weight: 400;
+  font-size: $base-font;
+  @include apply-base-color();
 }
 
 html {
-  background: img("light_carbon.png") left top;
   min-height: 100%;
 }
-
-h1, h2, h3, h4 {
-  margin: 5px 0;
-}
-
-a {
-  cursor: pointer;
-
-  &:hover {
-    color: $blue;
-    text-decoration: none;
-  }
-}
-
 
 #main-content {
   margin: auto;
   margin-top: $nav-height;
-  color: $text-color;
+
+  @media (min-width: 600px) { width: 90%; }
+  @media (min-width: 768px) { width: 80%; }
+  @media (min-width: 1000px) { width: 70%; }
+}
+
+h1, h2, h3, h4 {
+  margin: 5px 0;
+  font-weight: inherit;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  cursor: pointer;
+  color: $accent;
+
+  &:focus, &:active, &:hover {
+    color: $accent;
+  }
+}
+
+* {
+  box-sizing: border-box;
+
+  &:focus, &:active, &:hover {
+    outline: 0;
+  }
+}
+
+input, textarea {
+  border: none;
+  width: 100%;
+  display: inline-block;
+  padding: $spacing;
+
+  &[type="text"], &textarea {
+    border-radius: $radius;
+    padding-left: $spacing;
+    color: $text-color;
+    border: none;
+  }
+
+  &:-webkit-input-placeholder  {
+    color: $text-color;
+    font-weight: 100;
+    opacity: 0.75;
+  }
+}
+
+textarea {
+  resize: vertical;
+  max-height: 300px;
+  min-height: 100px;
+}
+
+
+.action-wrap {
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+
+  > * {
+    flex: 1;
+    margin-right: $spacing;
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
+}
+
+.button {
+  @include apply-accent-color();
+  border: none;
+  border-radius: $radius;
+  padding: $spacing;
+  display: inline-block;
+  text-align: center;
+  min-width: $spacing * 12;
+
+  &:hover {
+    color: $text-color;
+    text-decoration: none;
+  }
+}
+
+.error {
+  color: $error-color;
+
+  &.in-place {
+    margin: 0;
+    position: relative;
+    top: -($spacing * 3);
+    height: 0;
+  }
 }

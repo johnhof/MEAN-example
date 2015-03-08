@@ -27,28 +27,36 @@ module.exports = {
 
     // search is the query param was provided
     if (req.query.search) {
-      Note.search(req.query, sendNotes);
+      var regEx = new RegExp('^' + req.query.search,'i');
+
+      Note.find({
+        $or : [ // match against both the title and the body
+          { title   : regEx },
+          { content : regEx }
+        ]
+      }, function (error, notes) {
+        if (error) {
+          return next(error);
+        } else {
+          return res.send({
+            notes : notes
+          });
+        }
+      });
 
     // otherwise, get the latest players
     } else {
-      Note.recent(req.query, sendNotes);
-    }
-
-    // helper callback to send note results
-    function sendNotes (error, notes) {
-      console.log(notes)
-      if (error) {
-        return next(error);
-      } else {
-
-        // add the href to each note
-        _.each(notes || [], function (note, index) {
-          notes[index].href = '/notes/' + notes._id;
-          delete notes[index].__v;
-        });
-
-        return res.send(notes);
-      }
+      Note.find({}).sort({
+        created : 'descending' // sort from most to least recently created
+      }).exec(function (error, notes) {
+        if (error) {
+          return next(error);
+        } else {
+          return res.send({
+            notes : notes
+          });
+        }
+      });
     }
   }
 };

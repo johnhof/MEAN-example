@@ -64,11 +64,11 @@ module.exports = function (grunt) {
       },
       images : {
         files : ['<%= server.app %>/assets/images/**/*'],
-        tasks : ['copy:images']
+        tasks : ['copy:dist:images']
       },
       gruntfile : {
         files : ['Gruntfile.js'],
-        tasks : ['build-dev']
+        tasks : ['build']
       },
 
       // restart server on API changes
@@ -101,6 +101,24 @@ module.exports = function (grunt) {
         files : [{
           dot : true,
           src : '.tmp'
+        }]
+      },
+      js: {
+        files: [{
+          dot: true,
+          src: '<%= server.dist %>/**/*.js'
+        }]
+      },
+      css: {
+        files: [{
+          dot: true,
+          src: '<%= server.dist %>/**/*.css'
+        }]
+      },
+      html: {
+        files: [{
+          dot: true,
+          src: '<%= server.dist %>/**/*.html'
         }]
       }
     },
@@ -160,8 +178,12 @@ module.exports = function (grunt) {
       options : {
         sassDir   : '.tmp/styles',
         cssDir    : '.tmp/styles',
-        imagesDir : '<%= server.dist %>/images',
         raw       : 'Sass::Script::Number.precision = 10\n'
+      },
+      server: {
+        options: {
+          debugInfo: true
+        }
       }
     },
 
@@ -169,39 +191,44 @@ module.exports = function (grunt) {
     // copy files
     //
     copy : {
-      dist : {
-        images : {
-          files: [{
-            dot     : true,
-            flatten : true,
-            dest    : '<%= server.dist %>/images',
-            src     : '<%= server.app %>/assets/images/**/*'
-          }, {
-            dot     : true,
-            flatten : true,
-            dest    : '<%= server.dist %>/favicon.ico',
-            src     : '<%= server.app %>/assets/images/favicon.ico'
-          }]
-        },
-        css : {
-          files : [{
-            dot     : true,
-            flatten : true,
-            src     : '<%= server.app %>/**/*.{sass,scss}',
-            dest    : '.tmp/styles'
-          }]
-        },
-        html : {
-          files : [{
-            src     : '<%= server.app %>/core/index.html',
-            dest    : '<%= server.dist %>'
-          }, {
-            dot     : true,
-            flatten : true,
-            src     : '<%= server.app %>/components/**/*.html',
-            dest    : '<%= server.dist %>/views'
-          }]
-        }
+      images : {
+        files: [{
+          expand  : true,
+          dot     : true,
+          flatten : true,
+          src     : '<%= server.app %>/assets/images/**/*',
+          dest    : '<%= server.dist %>/images/'
+        }, {
+          expand  : true,
+          dot     : true,
+          flatten : true,
+          src     : '<%= server.app %>/assets/images/favicon.ico',
+          dest    : '<%= server.dist %>/'
+        }]
+      },
+      css : {
+        files : [{
+          expand  : true,
+          dot     : true,
+          flatten : true,
+          src     : '<%= server.app %>/**/*.{sass,scss}',
+          dest    : '.tmp/styles/'
+        }]
+      },
+      html : {
+        files : [{
+          expand  : true,
+          dot     : true,
+          flatten : true,
+          src     : '<%= server.app %>/core/index.html',
+          dest    : '<%= server.dist %>/'
+        }, {
+          expand  : true,
+          dot     : true,
+          flatten : true,
+          src     : '<%= server.app %>/**/*.html',
+          dest    : '<%= server.dist %>/views'
+        }]
       }
     },
   });
@@ -236,7 +263,7 @@ module.exports = function (grunt) {
 
   // rebuild all
   grunt.registerTask('build', [
-    'clean:dist',
+    'clean',
     'wiredep',
     'copy',
     'concat:js',

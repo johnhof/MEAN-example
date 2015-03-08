@@ -48,7 +48,16 @@ module.exports = {
   read : function (req, res, next) {
     Note.findOne({
       _id : req.params.id
-    }, sendNoteCallback(res, next));
+    }, function sendNote (error, note) {
+      if (!note) {
+        return next({
+          status : 404,
+          error  : 'Note `' + req.params.id + '` not found'
+        });
+      } else {
+        return res.send(note);
+      }
+    });
   },
 
 
@@ -65,7 +74,13 @@ module.exports = {
   update : function (req, res, next) {
     Note.findOne({
       _id : req.params.id
-    }, sendNoteCallback(res, next));
+    }, function sendNote (error, note) {
+      if (error) {
+        return next(error);
+      } else {
+        return res.send(note);
+      }
+    });
   },
 
 
@@ -82,21 +97,14 @@ module.exports = {
   destroy : function (req, res, next) {
     Note.findOne({
       _id : req.params.id
-    }).remove(sendNoteCallback(res, next));
+    }).remove(function sendNote (error, note) {
+      if (error) {
+        return next(error);
+      } else {
+        return res.send({
+          success: true
+        });
+      }
+    });
   }
 };
-
-//
-// Helpers
-//
-
-function sendNoteCallback (res, next) {
-  return function sendNote (error, note) {
-    console.log(error)
-    if (error) {
-      return next(error);
-    } else {
-      return res.send(note);
-    }
-  }
-}
