@@ -3,7 +3,7 @@ var mon = require('mongoman');
 // register a new model `Note`
 module.exports = mon.register('Note', {
 
-  // `title` is a required unique alphanumeric string
+  // `title` is a required string that must be unique
   title : mon('Title').string().unique().required().fin(),
 
   // `Content` is a required string that must be less than 500 characters

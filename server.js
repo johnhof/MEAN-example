@@ -10,13 +10,19 @@ var err    = require('./api/lib/error'); // include our custom error handler
 var json       = require('express-json'); // helps manage headers
 var bodyParser = require('body-parser'); // a set of request parsers
 
+// export the server for testing
+module.exports = startServer;
+
+// if this is a test, dont run the setup functions
+if (require.main !== module) { // if run as a module, not the command line
+  return;
+}
 
 //////////////////////////////////////////////////////////////////////////////////
 //
 // Connect to the mongo database
 //
 //////////////////////////////////////////////////////////////////////////////////
-
 
 // if the commection is successful
 mon.goose.connection.on("open", function (ref) {
@@ -25,6 +31,7 @@ mon.goose.connection.on("open", function (ref) {
   // register models
   mon.registerAll(__dirname + '/api/components', /_model$/i);
 
+  // exec server startup
   startServer();
 });
 
@@ -38,17 +45,14 @@ mon.goose.connection.on("error", function (err) {
 mon.connect(/* pass in the ID for your database on the live server */);
 
 
-
 //////////////////////////////////////////////////////////////////////////////////
 //
 // Build and start the server
 //
 //////////////////////////////////////////////////////////////////////////////////
 
-// Return the server function to allow superTEst to work
-module.exports = startServer;
-
-function startServer () {
+// allow sor log supression for the sake of tests
+function startServer (portOverride, suppressLogs) {
 
   // define the server and an express server
   var server = express();
@@ -74,7 +78,9 @@ function startServer () {
     });
 
     // log the request
-    console.log('  ' + (req.method).cyan.dim + ' ' + (req.url).grey.dim);
+    if (!suppressLogs) {
+      console.log('  ' + (req.method).cyan.dim + ' ' + (req.url).grey.dim);
+    }
 
     return next();
   });
@@ -91,13 +97,19 @@ function startServer () {
     res.set({ 'Content-Type': 'text/html; charset=utf-8' });
 
     // log the request and send the application file
-    console.log('  ' + (req.method).cyan.dim + ' ' + (req.url).grey.dim);
+    if (!suppressLogs) {
+      console.log('  ' + (req.method).cyan.dim + ' ' + (req.url).grey.dim);
+    }
     res.sendFile(__dirname + '/dist/index.html');
 
   });
 
-  server.listen(server.config.port);
-  console.log('\n  Listening on port '.green + (server.config.port + '').blue + '\n');
+  var finalPort = portOverride || server.config.port;
+  server.listen(finalPort);
+
+  if (!suppressLogs) {
+    console.log('\n  Listening on port '.green + (finalPort + '').blue + '\n');
+  }
 
   return server;
 }

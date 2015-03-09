@@ -11,6 +11,10 @@ mean.service('Api', ['$http',  '$resource', function ($http, $resource) {
     return $http(settings);
   }
 
+  //
+  // Resources
+  //
+
   // Notes
   api.notes = $resource('/notes', null,  {
     create  : { method : 'POST' },
@@ -25,7 +29,7 @@ mean.service('Api', ['$http',  '$resource', function ($http, $resource) {
     update  : {
       method : 'PUT',
       params : {
-        id : '@id'
+        id : '@id' // make sure `id` is used as URI parameter, not in the body
       }
     }
   });

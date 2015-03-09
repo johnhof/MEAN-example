@@ -1,14 +1,23 @@
 {
   "name": "MEAN-example",
+  "author": "John Hofrichter <https://github.com/johnhof>",
+  "description": "Simple note application built on a MEAN stack",
   "version": "1.0.0",
+  "repository": "git://github.com/johnhof/MEAN-example",
+  "main": "server.js",
   "engines": {
     "node": ">=0.10.0"
   },
   "scripts": {
     "test": "mocha --timeout 5000"
   },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/johnhof/MEAN-example/blob/master/LICENSE-MIT"
+    }
+  ],
   "dependencies": {
-    "async": "^0.9.0",
     "body-parser": "~1.9.3",
     "colors": "~1.0.3",
     "config.json": "0.0.3",
@@ -29,8 +38,13 @@
     "grunt-wiredep": "~1.8.0",
     "load-grunt-tasks": "^0.4.0",
     "lodash": "~2.4.1",
-    "mocha": "~2.0.1",
-    "mongoman": "^1.0.0",
-    "should": "~3.3.1"
+    "mongoman": "^1.0.0"
+  },
+  "devDependencies": {
+    "chai": "1.10.x",
+    "express": "^4.12.x",
+    "mocha": "1.21.x",
+    "should": "1.1.x",
+    "supertest": "^0.15.0"
   }
 }

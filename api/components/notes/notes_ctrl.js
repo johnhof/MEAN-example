@@ -1,5 +1,4 @@
 var mon = require('mongoman');
-var _   = require('lodash');
 
 var Note = mon.model('Note');
 
@@ -10,7 +9,7 @@ module.exports = {
   //
   // Query Params:
   // {
-  //   search : String, // OPTIONAL - return notes that contain this sting in the body of title
+  //   search : String, // OPTIONAL - return notes that contain this sting in the title or content
   // }
   //
   // Returns:
@@ -23,13 +22,13 @@ module.exports = {
   //
   read : function (req, res, next) {
 
-    // search is the query param was provided
+    // perform a search if the query param was provided
     if (req.query.search) {
-      // match words only
+      // match from the beginning of a word,
       var regEx = new RegExp('(^|\\s+)' + req.query.search,'i');
 
       Note.find({
-        $or : [ // match against both the title and the body
+        $or : [ // accept both title and content matches
           { title   : regEx },
           { content : regEx }
         ]
