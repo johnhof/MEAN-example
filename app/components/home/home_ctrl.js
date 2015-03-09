@@ -1,5 +1,4 @@
 mean.controller('HomeCtrl', ['$scope', 'Api', function ($scope, Api) {
-console.log('test')
   // create the notes array, bond to the controller scope
   $scope.notes = [];
   $scope.loading = true;

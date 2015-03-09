@@ -123,6 +123,9 @@ module.exports = function (grunt) {
       }
     },
 
+    //
+    // Concat files to reduce number of requests
+    //
     concat : {
       js : {
         files : {

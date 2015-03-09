@@ -13,13 +13,13 @@ mean.config(['$routeProvider', function ($routeProvider) {
       controller  : 'HomeCtrl'
     }).
 
-    //  New Note - note submission
+    //  New Note - new note submission
     when('/new', {
       templateUrl : 'views/note_action.html',
       controller  : 'NoteActionCtrl'
     }).
 
-    //  Edit Note - note submission
+    //  Edit Note - edit note submission
     when('/edit/:id', {
       templateUrl : 'views/note_action.html',
       controller  : 'NoteActionCtrl'
