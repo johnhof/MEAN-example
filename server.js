@@ -24,7 +24,7 @@ if (require.main !== module) { // if run as a module, not the command line
 //
 //////////////////////////////////////////////////////////////////////////////////
 
-// if the commection is successful
+// if the connection is successful
 mon.goose.connection.on("open", function (ref) {
   console.log("\n  Connected to mongo server!\n".blue);
 
