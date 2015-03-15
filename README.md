@@ -3,6 +3,9 @@ MEAN Example
 
 [![Build Status](https://travis-ci.org/johnhof/MEAN-example.svg?branch=master)](https://travis-ci.org/johnhof/MEAN-example)
 
+[Written from scratch for this MEAN guide](https://johnhofrichter.wordpress.com/2015/03/15/building-a-mean-stack-from-the-ground-up/)
+
+
 ```bash
 ├── api
 │   ├── components  //  endpoint and model scripts
